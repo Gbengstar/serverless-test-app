@@ -1,0 +1,29 @@
+service: aws-node-http-api-project
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  create_person:
+    handler: index.handler
+    events:
+      - httpApi:
+          path: /
+          method: post
+  get_person:
+    handler: getPerson.handler
+    events:
+      - httpApi:
+          path: /
+          method: get
+  delete_person:
+    handler: deletePerson.handler
+    events:
+      - httpApi:
+          path: /
+          method: delete
+
+plugins:
+  - serverless-offline
